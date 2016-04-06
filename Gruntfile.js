@@ -28,6 +28,21 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'A successful test of build control'
+      },
+      pages: {
+        options: {
+          remote: 'https://github.com/qetennyson/lightningtalktest',
+          branch: 'gh-pages'
+        }
+      }
+    },
+
     // Project settings
     yeoman: appConfig,
 
@@ -220,7 +235,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -480,4 +495,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.loadNpmTasks('grunt-build-control');
 };
